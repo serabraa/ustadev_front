@@ -18,7 +18,7 @@ function Projects() {
       description: t('projects.items.mobile.description'),
       tech: t('projects.items.mobile.tech'),
       image: '📱',
-      link: 'https://businesscardiprochem.up.railway.app/pdf'
+      link: ''
     },
     {
       title: t('projects.items.dashboard.title'),

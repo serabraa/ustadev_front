@@ -7,7 +7,7 @@ function Contacts() {
   // Contact methods with i18n labels
   const contacts = [
     { label: t('contacts.telegram'), value: '@serabraa', href: 'https://t.me/serabraa' },
-    { label: t('contacts.phone'), value: '+374 (55) 64-61-63', href: 'tel:+37455646163' },
+    // { label: t('contacts.phone'), value: '+374 (55) 64-61-63', href: 'tel:+37455646163' },
     { label: t('contacts.email'), value: 'serabrserabr@gmail.com', href: 'mailto:serabrserabr@gmail.com' }
   ]
 

@@ -9,7 +9,16 @@ function Header({ brand = 'Ustadev', logoSrc }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 1000, background: '#000000', color: '#ffffff' }}>
+    <header style={{ 
+      position: 'fixed', 
+      top: 0, 
+      left: 0,
+      right: 0,
+      zIndex: 1000, 
+      background: '#000000', 
+      color: '#ffffff',
+      width: '100%'
+    }}>
       {/* Main container with flex layout */}
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0.75rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Logo and brand name */}
@@ -160,7 +169,7 @@ function Header({ brand = 'Ustadev', logoSrc }) {
               e.target.style.transform = 'translateY(0)'
             }}
           >
-            {open ? 'Close' : 'Menu'}
+            {open ? t('nav.close') : t('nav.menu')}
           </button>
         </div>
       </div>
