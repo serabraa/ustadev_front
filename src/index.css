@@ -56,7 +56,7 @@ html, body, #root { height: 100%; margin: 0; }
 .card.turned .card-inner { transform: rotateY(180deg); }
 
 /* Hint that the card turns: one lift of the edge after it has been dealt */
-.card.untouched .card-inner { animation: peek 1.6s ease-in-out 3.4s; }
+.card.peeking .card-inner { transform: rotateY(-28deg) translateY(-6px); }
 
 .face {
   position: absolute;
@@ -212,11 +212,6 @@ html, body, #root { height: 100%; margin: 0; }
 @keyframes deal {
   from { opacity: 0; transform: translateY(24px) rotate(-2deg); }
   to { opacity: 1; transform: none; }
-}
-
-@keyframes peek {
-  0%, 100% { transform: none; }
-  35%, 55% { transform: rotateY(-28deg) translateY(-6px); }
 }
 
 @keyframes inscribe { to { stroke-dashoffset: 0; } }
