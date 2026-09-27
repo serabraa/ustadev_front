@@ -34,8 +34,9 @@ function initialLang() {
 function App() {
   const [lang, setLang] = useState(initialLang)
   const [turned, setTurned] = useState(false)
-  // Once the card has been turned, the one-time peek hint is no longer needed
+  // One-time hint that the card turns: lift an edge, then let it fall back
   const [touched, setTouched] = useState(false)
+  const [peeking, setPeeking] = useState(false)
   const t = copy[lang]
 
   useEffect(() => {
@@ -43,8 +44,21 @@ function App() {
     try { localStorage.setItem('lang', lang) } catch { /* ignore */ }
   }, [lang])
 
+  // Driven by the card's transition rather than a keyframe animation, so a
+  // click mid-peek turns the card smoothly from wherever it currently is
+  useEffect(() => {
+    if (touched || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const lift = setTimeout(() => setPeeking(true), 3400)
+    const drop = setTimeout(() => setPeeking(false), 4300)
+    return () => {
+      clearTimeout(lift)
+      clearTimeout(drop)
+    }
+  }, [touched])
+
   const flip = () => {
     setTouched(true)
+    setPeeking(false)
     setTurned((v) => !v)
   }
 
@@ -60,7 +74,7 @@ function App() {
         {t.switchLabel}
       </button>
 
-      <div className={`card${turned ? ' turned' : ''}${touched ? '' : ' untouched'}`} onClick={turn}>
+      <div className={`card${turned ? ' turned' : ''}${peeking ? ' peeking' : ''}`} onClick={turn}>
         <div className="card-inner">
           <section className="face front" inert={turned}>
             <div className="frame">
